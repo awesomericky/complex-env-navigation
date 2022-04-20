@@ -59,19 +59,33 @@ python complex-env-navigation/raisimGymTorch/env/envs/test/src_runner.py
 ```
 
 # Train model from scratch
-Train Forward Dynamics Model
+Train Forward Dynamics Model (FDM)
 ```
 python raisimGymTorch/env/envs/train/FDM_train.py -tw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/command_tracking_flat/final/full_16200.pt
 ```
 
-Download data to train Informed Trajectory Sampler (386MB)
+Download data to train Informed Trajectory Sampler (386MB) [[link](https://drive.google.com/file/d/1R7EyMPIyNkHme9H-z20VN1BkFeDVS4an/view?usp=sharing)]
+```
+# Unzip the downloaded zip file and move it to required path.
+unzip analytic_planner_data.zip
+mv analytic_planner_data /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/.
 ```
 
-```
-
-Train Informed Trajectory Sampler
+Train Informed Trajectory Sampler (ITS)
 ```
 python raisimGymTorch/env/envs/train/ITS_train.py -fw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/ITS_train/final/full_450.pt
+```
+
+# Cite
+```
+@INPROCEEDINGS{Kim-RSS-22, 
+    AUTHOR    = {Yunho Kim AND Chanyoung Kim AND Jemin Hwangbo}, 
+    TITLE     = {Learning Forward Dynamics Model and Informed Trajectory Sampler for Safe Quadruped Navigation}, 
+    BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
+    YEAR      = {2022}, 
+    ADDRESS   = {New York, USA}, 
+    MONTH     = {June}
+} 
 ```
 
 
