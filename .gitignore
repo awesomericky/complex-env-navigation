@@ -5,9 +5,9 @@ _generate/
 *.so
 *.py[cod]
 *.egg-info
-.idea/*
+.idea/
 *.prof
-cmake-*/*
+cmake-*/
 *.log
 *imgui.ini
 .vscode/*
