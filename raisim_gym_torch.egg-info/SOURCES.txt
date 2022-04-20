@@ -1,9 +1,0 @@
-LICENSE
-README.md
-setup.py
-raisim_gym_torch.egg-info/PKG-INFO
-raisim_gym_torch.egg-info/SOURCES.txt
-raisim_gym_torch.egg-info/dependency_links.txt
-raisim_gym_torch.egg-info/not-zip-safe
-raisim_gym_torch.egg-info/requires.txt
-raisim_gym_torch.egg-info/top_level.txt

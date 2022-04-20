@@ -10,6 +10,8 @@ _generate/
 cmake-*/
 *.log
 *imgui.ini
-.vscode/*
+.vscode/
 id_rsa
 raisimGymTorch/env/bin/*
+wandb/
+__pycache__/

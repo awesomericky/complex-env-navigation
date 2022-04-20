@@ -1,6 +1,0 @@
-/home/awesomericky/raisim/raisimLib/complex-env-navigation/build/temp.linux-x86_64-3.8/CMakeFiles/rebuild_cache.dir
-/home/awesomericky/raisim/raisimLib/complex-env-navigation/build/temp.linux-x86_64-3.8/CMakeFiles/train.dir
-/home/awesomericky/raisim/raisimLib/complex-env-navigation/build/temp.linux-x86_64-3.8/CMakeFiles/edit_cache.dir
-/home/awesomericky/raisim/raisimLib/complex-env-navigation/build/temp.linux-x86_64-3.8/CMakeFiles/test.dir
-/home/awesomericky/raisim/raisimLib/complex-env-navigation/build/temp.linux-x86_64-3.8/pybind11/CMakeFiles/rebuild_cache.dir
-/home/awesomericky/raisim/raisimLib/complex-env-navigation/build/temp.linux-x86_64-3.8/pybind11/CMakeFiles/edit_cache.dir

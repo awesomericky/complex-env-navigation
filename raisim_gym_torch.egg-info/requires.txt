@@ -1,4 +1,0 @@
-ruamel.yaml
-numpy
-torch
-tensorboard>=1.15
