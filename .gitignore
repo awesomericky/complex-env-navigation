@@ -12,6 +12,6 @@ cmake-*/
 *imgui.ini
 .vscode/
 id_rsa
-raisimGymTorch/env/bin/*
 wandb/
 __pycache__/
+.DS_Store
