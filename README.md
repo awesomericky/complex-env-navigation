@@ -76,11 +76,11 @@ mv analytic_planner_data /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation
 
 Train Informed Trajectory Sampler (ITS)
 ```
-python raisimGymTorch/env/envs/train/ITS_train.py -fw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/ITS_train/final/full_450.pt
+python raisimGymTorch/env/envs/train/ITS_train.py -fw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/FDM_train/final/full_1500.pt
 ```
 
 # Etc
-More details of the provided velocity command tracking controller in flat terrain for quadruped robots can be found in this [paper](https://arxiv.org/abs/1901.08652) and [repository](https://github.com/awesomericky/velocity-command-tracking-controller-for-quadruped-robot).
+More details of the provided velocity command tracking controller for quadruped robots in flat terrain can be found in this [paper](https://arxiv.org/abs/1901.08652) and [repository](https://github.com/awesomericky/velocity-command-tracking-controller-for-quadruped-robot).
 
 # Cite
 ```
