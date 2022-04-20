@@ -62,6 +62,8 @@ python complex-env-navigation/raisimGymTorch/env/envs/test/src_runner.py
 ```
 
 # Train model from scratch
+Set `logging: True` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/train/cfg.yaml` to enable wandb logging.
+
 Train Forward Dynamics Model (FDM)
 ```
 python raisimGymTorch/env/envs/train/FDM_train.py -tw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/command_tracking_flat/final/full_16200.pt

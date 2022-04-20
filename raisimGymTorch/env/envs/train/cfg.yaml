@@ -1,6 +1,6 @@
 seed: 1
 record_video: yes
-logging: False
+logging: False  # wandb logging
 
 # Environment configuration
 environment:
