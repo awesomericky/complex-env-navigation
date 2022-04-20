@@ -4,6 +4,8 @@ Official implementation of **"Learning Forward Dynamics Model and Informed Traje
 
 [[Project page](https://awesomericky.github.io/projects/FDM_ITS_navigation/index.html)] [[Paper](https://arxiv.org/abs/2204.08647)]
 
+<img width=700 src='demo.gif'>
+
 # Dependencies
 
 Set conda environment
