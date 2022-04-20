@@ -14,13 +14,13 @@ conda activate quadruped_nav
 
 Install [torch](https://pytorch.org/)(1.10), [numpy](https://numpy.org/install/)(1.21), [matplotlib](https://matplotlib.org/stable/users/getting_started/), [tqdm](https://pypi.org/project/tqdm/), [scipy](https://docs.scipy.org/doc/scipy/getting_started.html#getting-started-ref)
 
+Install [wandb](https://docs.wandb.ai/quickstart) and login. 'wandb' is a logging system similar to 'tensorboard'.
+
 Install required python packages to compute [Dynamic Time Warping](https://dynamictimewarping.github.io/python/) in [Parallel](https://joblib.readthedocs.io/en/latest/installing.html)
 ```
 pip install dtw-python
 pip install joblib
 ```
-
-Install [wandb](https://docs.wandb.ai/quickstart) and login. 'wandb' is a logging system similar to 'tensorboard'.
 
 Install [OMPL](https://ompl.kavrakilab.org/) (Open Motion Planning Library). Python binding version of OMPL is used.
 ```
@@ -31,7 +31,8 @@ chmod u+x install-ompl-ubuntu.sh
 
 # Simulator setup
 [RaiSim](https://raisim.com/index.html) is used. Install it following the [installation guide](https://raisim.com/sections/Installation.html).
-Then, set up [RaisimGymTorch](https://raisim.com/sections/RaisimGymTorch.html).
+
+Then, set up [RaisimGymTorch](https://raisim.com/sections/RaisimGymTorch.html) as following.
 ```
 cd /RAISIM_DIRECTORY_PATH/raisimLib
 git clone git@github.com:awesomericky/complex-env-navigation.git
@@ -40,7 +41,7 @@ python setup.py develop
 ```
 
 # Path setup
-Configure following paths. Parts that should be configured is set with *\TODO: PATH_SETUP_REQUIRED* flag.
+Configure following paths. Parts that should be configured is set with `TODO: PATH_SETUP_REQUIRED` flag.
 
 1. Trained model weight
     * `cfg['path']['home']` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/test/cfg.yaml`
@@ -75,6 +76,9 @@ Train Informed Trajectory Sampler (ITS)
 ```
 python raisimGymTorch/env/envs/train/ITS_train.py -fw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/ITS_train/final/full_450.pt
 ```
+
+# Etc
+More details of the provided velocity command tracking controller in flat terrain for quadruped robots can be found in this [paper](https://arxiv.org/abs/1901.08652) and [repository](https://github.com/awesomericky/velocity-command-tracking-controller-for-quadruped-robot).
 
 # Cite
 ```
