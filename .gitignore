@@ -14,4 +14,4 @@ cmake-*/
 id_rsa
 wandb/
 __pycache__/
-.DS_Store
+*.DS_Store
