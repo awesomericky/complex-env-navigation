@@ -169,6 +169,8 @@ check_saving_folder(result_save_directory)
 items_to_save = ["/cfg.yaml", "/src_runner.py"]
 for item_to_save in items_to_save:
     save_location = task_path + "/../../../../" + result_save_directory + item_to_save
+    if not os.path.exists(task_path + "/../../../../" + result_save_directory):
+        os.makedirs(task_path + "/../../../../" + result_save_directory)
     copyfile(task_path + item_to_save, save_location)
 
 # Set wandb logger
