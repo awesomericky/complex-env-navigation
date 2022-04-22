@@ -15,8 +15,20 @@ conda activate quadruped_nav
 ```
 
 Install [torch](https://pytorch.org/)(1.10.1), [numpy](https://numpy.org/install/)(1.21.2), [matplotlib](https://matplotlib.org/stable/users/getting_started/), [tqdm](https://pypi.org/project/tqdm/), [scipy](https://docs.scipy.org/doc/scipy/getting_started.html#getting-started-ref), [ruamel.yaml](https://pypi.org/project/ruamel.yaml/)
+```
+conda install pytorch==1.10.1 torchvision==0.11.2 torchaudio==0.10.1 cudatoolkit=11.3 -c pytorch -c conda-forge
+conda install numpy=1.21.2
+conda install matplotlib
+pip install tqdm
+conda install scipy
+pip install ruamel.yaml
+```
 
 Install [wandb](https://docs.wandb.ai/quickstart) and login. 'wandb' is a logging system similar to 'tensorboard'.
+```
+pip install wandb
+wandb login
+```
 
 Install required python packages to compute [Dynamic Time Warping](https://dynamictimewarping.github.io/python/) in [Parallel](https://joblib.readthedocs.io/en/latest/installing.html)
 ```
@@ -52,6 +64,8 @@ Configure following paths. Parts that should be configured is set with `TODO: PA
     * `OMPL_PYBIND_PATH` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/train/global_planner.py`
 
 # Quick start 
+Open [RaiSim Unity](https://raisim.com/sections/RaisimUnity.html) to see the visualized simulation.
+
 Run *point-goal navigation* with trained weight (click 'c' to continue when pdb stops the code)
 ```
 python complex-env-navigation/raisimGymTorch/env/envs/test/pgn_runner.py
@@ -63,7 +77,7 @@ python complex-env-navigation/raisimGymTorch/env/envs/test/src_runner.py
 ```
 
 # Train model from scratch
-Set `logging: True` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/train/cfg.yaml` to enable wandb logging.
+Set `logging: True` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/train/cfg.yaml`, if you want to enable wandb logging.
 
 Train Forward Dynamics Model (FDM) (click 'c' to continue when pdb stops the code). Evaluations of FDM are visualized in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/trajectory_prediction_plot`.
 ```
