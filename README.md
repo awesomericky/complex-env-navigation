@@ -14,13 +14,14 @@ conda create -n quadruped_nav python=3.8
 conda activate quadruped_nav
 ```
 
-Install [torch](https://pytorch.org/)(1.10), [numpy](https://numpy.org/install/)(1.21), [matplotlib](https://matplotlib.org/stable/users/getting_started/), [tqdm](https://pypi.org/project/tqdm/), [scipy](https://docs.scipy.org/doc/scipy/getting_started.html#getting-started-ref)
+Install [torch](https://pytorch.org/)(1.10.1), [numpy](https://numpy.org/install/)(1.21.2), [matplotlib](https://matplotlib.org/stable/users/getting_started/), [tqdm](https://pypi.org/project/tqdm/), [scipy](https://docs.scipy.org/doc/scipy/getting_started.html#getting-started-ref), [ruamel.yaml](https://pypi.org/project/ruamel.yaml/)
 
 Install [wandb](https://docs.wandb.ai/quickstart) and login. 'wandb' is a logging system similar to 'tensorboard'.
 
 Install required python packages to compute [Dynamic Time Warping](https://dynamictimewarping.github.io/python/) in [Parallel](https://joblib.readthedocs.io/en/latest/installing.html)
 ```
 pip install dtw-python
+pip install fastdtw
 pip install joblib
 ```
 
@@ -51,12 +52,12 @@ Configure following paths. Parts that should be configured is set with `TODO: PA
     * `OMPL_PYBIND_PATH` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/train/global_planner.py`
 
 # Quick start 
-Run *point-goal navigation* with trained weight
+Run *point-goal navigation* with trained weight (click 'c' to continue when pdb stops the code)
 ```
 python complex-env-navigation/raisimGymTorch/env/envs/test/pgn_runner.py
 ```
 
-Run *safety-remote control* with trained weight
+Run *safety-remote control* with trained weight (click 'c' to continue when pdb stops the code)
 ```
 python complex-env-navigation/raisimGymTorch/env/envs/test/src_runner.py
 ```
@@ -64,7 +65,7 @@ python complex-env-navigation/raisimGymTorch/env/envs/test/src_runner.py
 # Train model from scratch
 Set `logging: True` in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/raisimGymTorch/env/envs/train/cfg.yaml` to enable wandb logging.
 
-Train Forward Dynamics Model (FDM)
+Train Forward Dynamics Model (FDM) (click 'c' to continue when pdb stops the code). Evaluations of FDM are visualized in `/RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/trajectory_prediction_plot`.
 ```
 python raisimGymTorch/env/envs/train/FDM_train.py -tw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/command_tracking_flat/final/full_16200.pt
 ```
@@ -76,7 +77,7 @@ unzip analytic_planner_data.zip
 mv analytic_planner_data /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/.
 ```
 
-Train Informed Trajectory Sampler (ITS)
+Train Informed Trajectory Sampler (ITS) (click 'c' to continue when pdb stops the code)
 ```
 python raisimGymTorch/env/envs/train/ITS_train.py -fw /RAISIM_DIRECTORY_PATH/raisimLib/complex-env-navigation/data/FDM_train/final/full_1500.pt
 ```
