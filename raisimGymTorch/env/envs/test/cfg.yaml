@@ -45,7 +45,7 @@ environment:
     point_goal: True
     safety_control: False
   n_goals_per_env: 8
-  n_evaluate_envs: 60
+  n_evaluate_envs: 5
   analytic_planner:
     run: True
     visualize: True

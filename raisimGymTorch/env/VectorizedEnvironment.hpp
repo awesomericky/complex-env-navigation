@@ -72,9 +72,9 @@ class VectorizedEnvironment {
         else if (env_type[i] == 2)
             n_type_2 += 1.;
     }
-
-    std::cout << "Environment 1 (field): " << std::to_string(n_type_1 / num_envs_) << "\n";
-    std::cout << "Environment 2 (corridor): " << std::to_string(n_type_2 / num_envs_) << "\n";
+    
+    // std::cout << "Environment 1 (field): " << std::to_string(n_type_1 / num_envs_) << "\n";
+    // std::cout << "Environment 2 (corridor): " << std::to_string(n_type_2 / num_envs_) << "\n";
 
     environments_.reserve(num_envs_);
     rewardInformation_.reserve(num_envs_);
