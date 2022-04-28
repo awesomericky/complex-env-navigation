@@ -1,0 +1,1 @@
+/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/balls.dir/src/server/balls.cpp.o  -o balls  -Wl,-rpath,/home/awesomericky/raisim/raisimLib/raisim/linux/lib ../../raisim/linux/lib/libraisim.so -lpthread ../../raisim/linux/lib/libraisimPng.so ../../raisim/linux/lib/libraisimZ.so ../../raisim/linux/lib/libraisimODE.so ../../raisim/linux/lib/libraisimMine.so 

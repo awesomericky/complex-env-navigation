@@ -1,0 +1,213 @@
+seed: 1
+record_video: yes
+logging: False  # wandb logging
+
+# Environment configuration
+environment:
+  render: True
+  evaluate: True
+  determine_env: 0  # 0: not determine / 1: open field with circle & box / 2: cross-corridor with circle & box
+  num_envs: 800
+  max_n_update: 30000
+  eval_every_n: 100
+  new_environment_every_n: 100
+  seed:
+    train: 0
+    evaluate: 600
+  num_threads: 25 # 4 is (optimal for data collection)
+  evaluate_num_threads: 25  # Number of threads for evaluating FDM
+  simulation_dt: 0.0025
+  control_dt: 0.01
+  max_time: 9.0
+  obstacle_grid_size:
+    env_one:  # scattered object in open field
+      min: 2.3
+      max: 5.0
+    env_two:  # scattered object in cross-corridor
+      min: 2.3
+      max: 5.0
+  obstacle_size:  # cylinder: radius (min ~ max) / box: side length (min*2 ~ max*2)
+    env_one:
+      min: 0.05
+      max: 1.0
+    env_two:
+      min: 0.05
+      max: 1.0
+  obstacle_randomness:
+    min: 0.1
+    max: 0.9
+  command:
+    forward_vel:
+      min: -1.0
+      max: 1.0
+    lateral_vel:
+      min: -0.4
+      max: 0.4
+    yaw_rate:
+      min: -1.2
+      max: 1.2
+  random_initialize: True  # yaw angle is only randomized
+  point_goal_initialize: False
+  CVAE_data_collection_initialize: False
+  CVAE_environment_initialize: False
+  safe_control_initialize: False
+  analytic_planner:  # global planner configuration
+    run: True
+    visualize: True
+    n_waypoints: 2
+    planning_time: 7  # [s]
+
+# Forward Dynamics Model (FDM) training configuration
+training:
+  learning_rate: 3e-4
+  batch_size: 512
+  storage_size: 45000
+  num_epochs: 8
+  shuffle_batch: True
+  clip_gradient: True
+  max_gradient_norm: 2.0
+  loss_weight:
+    collision: 2.0
+    coordinate: 1.7
+  interpolate_probability: False
+  weight_decay: False
+  weight_decay_lamda: 0.1
+
+data_collection:
+  linear_time_correlated_command_sampler_beta: 0.7
+  normal_time_correlated_command_sampler_sigma: 0.3
+  prediction_period: 6  # [s]
+  command_period: 0.5  # [s]
+  prioritized_data_update: False
+  prioritized_data_update_magnitude: 0.8
+
+# Command tracking policy architecture
+# And
+# Forward Dynamics Model (FDM) architecture
+architecture:
+  command_tracking_policy_net: [128, 128]
+  COM_encoder:
+    naive:
+      input: 9   # body_orientation + vel + ang_vel
+      time_step: 10  # 0.5 [s]
+      update_period: 0.05  # [s]
+  state_encoder:  # state = lidar + (encoded COM history)
+    input: 450  # COM_encoder output is included in the input  (360 + 32)
+    output: 100
+    shape: [256, 256, 128, 128]
+    activation: leakyrelu
+    dropout: 0.2
+    batchnorm: True
+  command_encoder:
+    input: 3
+    output: 64
+    shape: [32]
+    activation: leakyrelu
+    dropout: 0.2
+    batchnorm: True
+  recurrence:
+    input: 64
+    hidden: 100
+    layer: 2
+    dropout: 0.2
+  traj_predictor:
+    input: 100
+    shape: [64, 32, 16]
+    activation: leakyrelu
+    dropout: 0.2
+    batchnorm: True
+    collision:
+      output: 1
+    coordinate:
+      output: 2
+
+# Informed Trajectory Sampler (ITS) training configuration
+CVAE_training:
+  command:
+    seed: 0  # important for creating training & validation dataset
+    num_epochs: 10000
+    evaluate_period: 25  # number of epochs
+    objective_type: BMS  # CVAE / BMS (https://arxiv.org/abs/1806.07772)  ==> changes are meaningful only when n_latent_sample > 1
+    n_latent_sample: 500
+    learning_rate: 3e-4
+    batch_size: 256 # 512
+    num_workers: 6
+    shuffle_batch: True
+    clip_gradient: False
+    max_gradient_norm: 2.0
+    loss_weight:
+      reconsturction: 1
+      KL_posterior: 1
+
+CVAE_inference:
+  n_sample: 100
+
+# Informed Trajectory Sampler (ITS) architecture
+CVAE_architecture:
+  command:
+    state_encoder: # state = lidar + (encoded COM history)
+      input: 450  # COM_encoder output is included in the input  (360 + 32)
+      output: 100
+      shape: [ 256, 256, 128, 128 ]
+      activation: leakyrelu
+      dropout: 0.2
+      batchnorm: True
+    waypoint_encoder:
+      input: 2
+      output: 64
+      shape: [ 32 ]
+      activation: leakyrelu
+      dropout: 0.2
+      batchnorm: True
+    command_encoder:
+      input: 3
+      output: 64
+      shape: [ 32 ]
+      activation: leakyrelu
+      dropout: 0.2
+      batchnorm: True
+    waypoint_recurrence_encoder:
+      input: 64
+      hidden: 100
+      layer: 1
+      dropout: 0.0  # just available when n_layer > 1
+    command_recurrence_encoder:
+      input: 64
+      hidden: 100
+      layer: 1
+      dropout: 0.0  # just available when n_layer > 1
+    latent_encoder:
+      input: 300  # 100 (encoded_state) + 100 (encoded_waypoints) + 100 (encoded_command_traj)
+      output: 16  # latent dimension (model outputs 'mean' and 'log_std' each of corresponding size'
+      shape: [ 64, 32 ]
+      activation: leakyrelu
+      dropout: 0.2
+      batchnorm: True
+    latent_decoder:
+      input: 216  # 100 (encoded_state) + 100 (encoded_waypoints) + 16
+      shape: [ 64, 64 ]
+      output: 32
+      activation: leakyrelu
+      dropout: 0.2
+      batchnorm: True
+    recurrence_decoder:
+      input: 32  # input and hidden(output) size should be sames because recursive process happens (check other good method)
+      hidden: 32
+      layer: 1
+      dropout: 0.0  # just available when n_layer > 1
+    command_decoder:
+      input: 32
+      output: 3
+      shape: [ 32 ]
+      activation: leakyrelu
+      dropout: 0.2
+      batchnorm: True
+
+# Model-predictive control configuration (w/o ITS)
+evaluating:
+  number_of_sample: 2000
+  gamma: 15
+  beta: 0.5
+  time_correlation_beta: 0.1
+  sigma: 0.3
+  number_of_bin: 10

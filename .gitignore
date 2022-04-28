@@ -1,0 +1,17 @@
+build/
+dist/
+_build/
+_generate/
+*.so
+*.py[cod]
+*.egg-info
+.idea/
+*.prof
+cmake-*/
+*.log
+*imgui.ini
+.vscode/
+id_rsa
+wandb/
+__pycache__/
+*.DS_Store
