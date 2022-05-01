@@ -107,6 +107,9 @@ python raisimGymTorch/env/envs/test/src_runner.py
 To quit running the demo, click 'Ctrl + c' to call pdb. Then click 'q'.
 
 # Extra notes
+* **This repository is not maintained anymore.** If you have a question, send an email to awesomericky@kaist.ac.kr.
+* We don't take questions regarding installation. If you install the dependencies successfully, you can easily run this.
+* For the codes in rsc/, ANYbotics' license is applied. MIT license otherwise.
 * More details of the provided velocity command tracking controller for quadruped robots in flat terrain can be found in this [paper](https://arxiv.org/abs/1901.08652) and [repository](https://github.com/awesomericky/velocity-command-tracking-controller-for-quadruped-robot).
 
 # Cite
