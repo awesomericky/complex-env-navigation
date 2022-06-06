@@ -116,12 +116,13 @@ To quit running the demo, click 'Ctrl + c' to call pdb. Then click 'q'.
 ```
 @INPROCEEDINGS{Kim-RSS-22, 
     AUTHOR    = {Yunho Kim AND Chanyoung Kim AND Jemin Hwangbo}, 
-    TITLE     = {Learning Forward Dynamics Model and Informed Trajectory Sampler for Safe Quadruped Navigation}, 
+    TITLE     = {{Learning Forward Dynamics Model and Informed Trajectory Sampler for Safe Quadruped Navigation}}, 
     BOOKTITLE = {Proceedings of Robotics: Science and Systems}, 
     YEAR      = {2022}, 
-    ADDRESS   = {New York, USA}, 
-    MONTH     = {June}
-} 
+    ADDRESS   = {New York City, NY, USA}, 
+    MONTH     = {June}, 
+    DOI       = {10.15607/RSS.2022.XVIII.069} 
+}
 ```
 
 
